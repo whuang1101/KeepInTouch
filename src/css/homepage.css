@@ -9,6 +9,8 @@
     flex-direction: column;
     align-items: center;
     padding-top: 1em;
+    padding-bottom: 1em;
+    justify-content: space-between;
 }
 .chat-bar {
     flex: 1.5;
@@ -25,10 +27,37 @@
     padding: .5em;
     border-radius: .2em;
 }
-.chat-bar {
-    padding: 1em;
-}
 .friend-request {
     font-size: 1.5em;
     font-weight: bolder;
+}
+.friends {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.potential-friends {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.potential-friends-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+}
+
+.potential-friend {
+    display: flex;
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: 1em;
+    align-items: center;
+    justify-content: space-between;
+}
+.first-half {
+    display: flex;
+    align-items: center;
+    gap: .5em;
 }
