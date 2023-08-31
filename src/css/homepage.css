@@ -1,0 +1,34 @@
+.homepage {
+    display: flex;
+    min-height: 100vh;
+}
+.side-bar {
+    flex: .35;
+    border-right: 1px solid rgba(229,229,229);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+}
+.chat-bar {
+    flex: 1.5;
+    border-right: 1px solid rgba(229,229,229);
+}
+.chat {
+    flex: 6;
+}
+.top-half {
+    display: flex;
+    flex-direction: column;
+}
+.icon {
+    padding: .5em;
+    border-radius: .2em;
+}
+.chat-bar {
+    padding: 1em;
+}
+.friend-request {
+    font-size: 1.5em;
+    font-weight: bolder;
+}

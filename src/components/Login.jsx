@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import "../css/login.css"
 import { motion } from "framer-motion"
 import GitHubLogo from "../assets/GitHubLogo"
@@ -10,7 +11,7 @@ const Login = () => {
         </div>
         <div className="login">
             <div className="header">
-                <h1 style={{color:"black"}}>Let's</h1>
+                <h1 style={{color:"black"}}>Let's</h1> 
                 <h1><span style={{color:"white"}}>Keep<span style={{color:"black"}}>in</span>Touch!</span></h1>
             </div>
                 <form className="login-form">
@@ -27,7 +28,7 @@ const Login = () => {
                     </div>
                 </form>
                 <div className="sign-up">
-                    <p>Or signup/login using </p>
+                    <p>Or Login using </p>
                     <div className="logos">
                         <GitHubLogo />
                         <GoogleLogo/>

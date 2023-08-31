@@ -55,6 +55,10 @@
     flex-direction: column;
     gap: .2em;
     font-size: 1.1em;
+    color: rgb(250, 248, 248);
+}
+::placeholder {
+    color: white;
 }
 .input-field {
     padding: .3em;
