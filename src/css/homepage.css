@@ -27,28 +27,24 @@
     padding: .5em;
     border-radius: .2em;
 }
-.friend-request {
-    font-size: 1.5em;
-    font-weight: bolder;
-}
 .friends {
     padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
-.potential-friends {
+.potential-friends, .friend-requests, .pending-requests {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
-.potential-friends-title {
+.potential-friends-title, .friend-request-title, .pending-request-title {
     font-size: 1.3em;
     font-weight: bold;
     border-bottom: 1px solid grey;
 }
 
-.potential-friend {
+.potential-friend, .friend-request, .pending-request {
     display: flex;
     padding: 1em;
     border: 1px solid black;
@@ -60,4 +56,12 @@
     display: flex;
     align-items: center;
     gap: .5em;
+}
+.second-half {
+    display: flex;
+    gap: .5em;
+}
+.profile-pic {
+    height:2em;
+    border-radius: 1em;
 }
