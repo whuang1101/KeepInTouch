@@ -27,6 +27,7 @@ const Sidebar = ({setMiddleScreen, middleScreen}) => {
                 <motion.div  className='icon' 
                 whileHover={{backgroundColor:"rgb(245,245,245)"}}
                 initial={{backgroundColor:"rgb(255,255,255)"}}
+                onClick={() =>setMiddleScreen("friends")}
                  >
                     <Icon path={mdiAccountMultiple} size={1} color={"rgb(96,98,102)"}/>
                 </motion.div>

@@ -33,7 +33,18 @@
     flex-direction: column;
     gap: 1em;
 }
-.potential-friends, .friend-requests, .pending-requests {
+.all-friends {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.friend-title {
+    font-size: 1.3em;
+    border-bottom: 1px solid black;
+    font-weight: bolder;
+}
+.potential-friends, .friend-requests, .pending-requests{
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -44,7 +55,7 @@
     border-bottom: 1px solid grey;
 }
 
-.potential-friend, .friend-request, .pending-request {
+.potential-friend, .friend-request, .pending-request,.friend-container {
     display: flex;
     padding: 1em;
     border: 1px solid black;

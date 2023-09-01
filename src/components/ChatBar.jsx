@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import FriendRequest from './FriendRequest';
+import FriendRequest from './chatbar-components/FriendRequest';
+import Friends from './chatbar-components/Friends';
 const ChatBar = ({middleScreen}) => {
     
     return(
@@ -10,6 +11,7 @@ const ChatBar = ({middleScreen}) => {
         {middleScreen === "friend-request" &&
         <FriendRequest/>
         }
+        {middleScreen === "friends" && <Friends/>}
 
         </div>
     )
