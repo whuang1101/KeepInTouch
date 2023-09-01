@@ -51,7 +51,7 @@ const FriendRequest = () => {
             if (response.ok){
                 setAllUsers(users => users.filter(item => (item._id !== newRecipient._id && item._id !== data._id)));
                 setPendingRequest([...pendingRequests, {
-                    _id:0,
+                    _id:Math.random(10),
                     recipient: {image_url: newRecipient.image_url,
                     name:newRecipient.name},
                     status:2
