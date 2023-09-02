@@ -40,7 +40,7 @@
     gap: 1em;
 }
 .friend-title {
-    font-size: 1.3em;
+    font-size: 1.5em;
     border-bottom: 1px solid black;
     font-weight: bolder;
 }
@@ -50,7 +50,7 @@
     gap: 1em;
 }
 .potential-friends-title, .friend-request-title, .pending-request-title {
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: bold;
     border-bottom: 1px solid grey;
 }
@@ -74,5 +74,28 @@
 }
 .profile-pic {
     height:2em;
+    border-radius: 1em;
+}
+
+
+.chat {
+    padding: 1em;
+    font-weight: bolder;
+    border-bottom: 1px solid grey;
+}
+.chat-title {
+    font-size: 1.5em;
+}
+.friends-chat {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+}
+.chat-friend-container {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    gap: 1em;
+    border: 1px solid grey;
     border-radius: 1em;
 }

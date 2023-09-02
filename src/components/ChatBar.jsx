@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import FriendRequest from './chatbar-components/FriendRequest';
-import Friends from './chatbar-components/Friends';
+import FriendRequest from './chat-bar-components/FriendRequest';
+import Friends from './chat-bar-components/Friends';
+import PeopleToChat from './chat-bar-components/PeopleToChat';
 const ChatBar = ({middleScreen}) => {
     
     return(
         <div className="chat-bar">  
         {middleScreen === "chat" && 
-        <div>Chat</div>
+        <PeopleToChat/>
         }
         {middleScreen === "friend-request" &&
         <FriendRequest/>

@@ -24,13 +24,17 @@ const Sidebar = ({setMiddleScreen, middleScreen}) => {
                     <Icon path={mdiMessage} size={1} color={"rgb(96,98,102)"} />
                 </motion.div>
                 }
+                {middleScreen === "friends" ?  <div  className='icon' style={{backgroundColor:"rgb(245,245,245)"}}
+                 >
+                    <Icon path={mdiAccountMultiple} size={1} color={"rgb(0,0,0)"}/>
+                </div>:                 
                 <motion.div  className='icon' 
                 whileHover={{backgroundColor:"rgb(245,245,245)"}}
                 initial={{backgroundColor:"rgb(255,255,255)"}}
                 onClick={() =>setMiddleScreen("friends")}
                  >
                     <Icon path={mdiAccountMultiple} size={1} color={"rgb(96,98,102)"}/>
-                </motion.div>
+                </motion.div>}
                 {middleScreen === "friend-request" ?
                 <div  className='icon' 
                 style={{backgroundColor:"rgb(245,245,245)"}}
