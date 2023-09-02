@@ -15,7 +15,7 @@ const FriendRequest = () => {
             else{
                 throw new Error("Network response was not ok")
             }
-        }).then(data => {setAllUsers(data), console.log(data)})
+        }).then(data => {setAllUsers(data)})
         fetch(`http://localhost:3000/friend-request/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();

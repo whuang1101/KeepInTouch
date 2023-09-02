@@ -10,20 +10,22 @@ const Home = () => {
     const data = JSON.parse(localStorage.getItem("userData"));
     const [socket, setSocket] = useState(null)
     useEffect(() => {
-        setSocket(io('http://localhost:3000',{
-            query: { username: data.email },
-          }))
-    },[])
-    useEffect(() => {
-        socket?.on("welcome", message =>{
-            console.log(message)
-        })
-    },[socket])
+        const newSocket = io('http://localhost:3000', {
+          query: { username: data.email },
+        });
+      
+        setSocket(newSocket);
+        
+        return () => {
+          newSocket.disconnect();
+        };
+      }, []);
+
     return(
         <div className="homepage">
             <Sidebar setMiddleScreen={setMiddleScreen} middleScreen={middleScreen}/>
             <ChatBar middleScreen ={middleScreen}/>
-            <Chat/>
+            <Chat socket={socket}/>
         </div>
     )
 }
