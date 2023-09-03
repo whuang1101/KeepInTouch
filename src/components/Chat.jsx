@@ -15,6 +15,9 @@ const Chat = ({socket}) => {
                 return response.json()
             }
         }).then (data => setMessages(data));
+        return () => {
+            setMessages([]);
+          };
     },[id,data._id])
     useEffect(() => {
         if(id) {
@@ -28,6 +31,9 @@ const Chat = ({socket}) => {
                     console.log(err);
                 })
         }
+        return () => {
+            setMessages([]);
+          };
 
     },[id])
     useEffect(() => {
@@ -41,6 +47,9 @@ const Chat = ({socket}) => {
           else{
             console.log("bad")
           }
+          return () => {
+            setMessages([]);
+          };
 
     },[socket])
     const handleMessageSend = (e) => {
