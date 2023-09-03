@@ -165,6 +165,7 @@ form {
     background-color: rgb(228, 230, 234);
     color: black;
     max-width: 60%; 
+    width: fit-content;
 }
 .send-container, .receive-container{
   padding: 0.5em;

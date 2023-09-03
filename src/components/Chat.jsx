@@ -8,7 +8,14 @@ const Chat = ({socket}) => {
     const [newMessage, setNewMessage] = useState("");
     const data = JSON.parse(localStorage.getItem("userData"));
 
-
+    useEffect (() => {
+        fetch(`http://localhost:3000/messages/${id}/${data._id}`)
+        .then(response => {
+            if(response.ok) {
+                return response.json()
+            }
+        }).then (data => setMessages(data));
+    },[id,data._id])
     useEffect(() => {
         if(id) {
             fetch(`http://localhost:3000/users/friend/${id}`)
@@ -16,18 +23,16 @@ const Chat = ({socket}) => {
                 {if(response.ok){
                     return response.json()
                 }})
-                .then(data => {setFriend(data),console.log(data)})
+                .then(data => {setFriend(data)})
                 .catch(err => {
                     console.log(err);
                 })
         }
-        setMessages([])
+
     },[id])
     useEffect(() => {
         if(socket)
-{        socket.on("chat message", (message) => {
-            console.log(message)
-          });
+{
           socket.on("private message", (message) => {
             console.log("hi")
             console.log(message)
@@ -40,15 +45,33 @@ const Chat = ({socket}) => {
     },[socket])
     const handleMessageSend = (e) => {
         e.preventDefault();
+        if(newMessage.length !== 0){
         const createdMessage = {
             content: newMessage,
             sender: data._id,
             recipient: id,
             date: new Date(),
+            read: false
         }
+        fetch("http://localhost:3000/messages", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(createdMessage)
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Posted correctly");
+                }
+            })
+            .catch(error => {
+                // Handle network or other errors
+                console.error("Network error:", error);
+            });
         socket.emit("private message", { id: id, message: createdMessage});
         setMessages((prevMessages) => [...prevMessages, createdMessage]);
-        setNewMessage("")
+        setNewMessage("")}
     }
     return (
         id ?
