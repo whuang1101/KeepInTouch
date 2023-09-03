@@ -61,8 +61,18 @@ const Chat = ({socket}) => {
                     </div>
                 }
             <div className="chat-body">
-                {messages && messages.length !== 0 && messages.map(item => (
-                    <div className="hi" key={Math.random(1000)}>{item.content}</div>
+                {messages && messages.length !== 0 && messages.map((item,index) => (
+                    item.recipient === id ?
+                    <div key={item._id ? item._id : index} className="sender-container">
+                        <div className="send-container">
+                            <div className="sender-message">{item.content}</div>
+                        </div>
+                    </div>:
+                    <div key={item._id ? item._id : index} className="receiver-container">
+                        <div className="receive-container">
+                            <div className="recipient-message" >{item.content}</div>
+                        </div>
+                    </div>
                 ))}
             </div>
             <div className="chat-footer">

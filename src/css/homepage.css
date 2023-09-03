@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: column;
     flex: 6;
+    max-height: 100vh;
 }
 .top-half {
     display: flex;
@@ -93,6 +94,8 @@
 .friends-chat {
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+
 }
 .chat-friend-container {
     display: flex;
@@ -109,14 +112,19 @@
     gap: 1em;
     border-bottom: 1px solid rgb(234,234,234);
     align-items: center;
+    flex: 1;
 }
 .chat-body {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 20;
     border-bottom: 1px solid black;
+    padding: .5em;
+    gap: .5em;
+    overflow-y: scroll;
 }
 .chat-footer {
+    flex: 1;
     display: flex;
     padding: .5em;
 }
@@ -129,7 +137,8 @@ form {
     border: none;
     background-color: rgb(243,243,243);
     border-radius: 1em;
-    padding: 1em;
+    padding: .5em;
+    padding-left: 1em;
     font-size: 1.1rem;
 }
 .message::placeholder{
@@ -137,4 +146,40 @@ form {
 }
 .submit{
     flex:1
+}
+
+.sender-container, .receive-container {
+    display: flex;
+}
+.sender-container{
+    justify-content: flex-end;
+}
+.receive-container {
+    justify-content: flex-start;
+}
+.send-container {
+    background-color: rgb(57, 130, 247);
+    color: rgb(251, 253, 255);
+}
+.receive-container {
+    background-color: rgb(228, 230, 234);
+    color: black;
+    max-width: 60%; 
+}
+.send-container, .receive-container{
+  padding: 0.5em;
+  max-width: 60%; 
+  border-radius: 1em;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.receive-container {
+    overflow:auto;
+}
+
+
+.sender-message,
+.receiver-message {
+    overflow-wrap: break-word;
+    word-wrap: break-word
 }
