@@ -1,9 +1,12 @@
+nav {
+    border-bottom: 1px solid grey;
+}
 .homepage {
     display: flex;
     min-height: 100vh;
 }
 .side-bar {
-    flex: .35;
+    flex: .25;
     border-right: 1px solid rgba(229,229,229);
     display: flex;
     flex-direction: column;
@@ -19,16 +22,29 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    flex: 6;
+    flex: 5;
     max-height: 100vh;
 }
 .top-half {
     display: flex;
     flex-direction: column;
 }
-.icon {
+
+.chat-icon,.online-icon, .request-icon, .fake-icon {
+    position: relative;
     padding: .5em;
     border-radius: .2em;
+}
+.chat-display-message,.online-display-message, .request-display-message, .fake-display-message {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(100%,-50%);
+    padding: .5em;
+    background-color: rgb(35, 35, 35);
+    color: rgb(173, 172, 172);
+    border-radius: .5em;
+
 }
 .friends {
     padding: 1em;
@@ -74,6 +90,10 @@
     align-items: center;
     gap: .5em;
 }
+.second-half-icons {
+    display: flex;
+    gap: 1em;
+}
 .second-half {
     display: flex;
     gap: .5em;
@@ -100,10 +120,10 @@
 .chat-friend-container {
     display: flex;
     align-items: center;
-    padding: .3em;
+    padding: .5em;
     gap: 1em;
-    border: 1px solid grey;
     border-radius: 1em;
+    font-size: 1.2em;
 }
 
 .chat-header {
@@ -113,6 +133,7 @@
     border-bottom: 1px solid rgb(234,234,234);
     align-items: center;
     flex: 1;
+    justify-content: space-between;
 }
 .chat-body {
     display: flex;
@@ -121,7 +142,9 @@
     border-bottom: 1px solid black;
     padding: .5em;
     gap: .5em;
-    overflow-y: scroll;
+    overflow: auto;
+    scroll-behavior: smooth;
+
 }
 .chat-footer {
     flex: 1;
@@ -131,9 +154,10 @@
 form {
     display: flex;
     width: 100%;
+    gap: .5em;
 }
 .message {
-    flex: 8;
+    flex: 20;
     border: none;
     background-color: rgb(243,243,243);
     border-radius: 1em;
@@ -145,7 +169,7 @@ form {
     color: rgb(101,103,107);
 }
 .submit{
-    flex:1
+    flex:.25;
 }
 
 .sender-container, .receive-container {
@@ -183,4 +207,20 @@ form {
 .receiver-message {
     overflow-wrap: break-word;
     word-wrap: break-word
+}
+.chat-placeholder {
+    flex: 5;
+    height: 100vh;
+    background-color: rgb(240,242, 245);
+    color: rgb(101,102,107);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+.logout-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }

@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom";
-
+import Icon from '@mdi/react';
+import { mdiDotsHorizontal, mdiPhone, mdiSend, mdiVideo } from '@mdi/js';
 const Chat = ({socket}) => {
     const { id } = useParams();
+    const messageContainerRef = useRef(null);
     const [friend,setFriend] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const data = JSON.parse(localStorage.getItem("userData"));
 
     useEffect (() => {
+        if(id) {
         fetch(`http://localhost:3000/messages/${id}/${data._id}`)
         .then(response => {
             if(response.ok) {
                 return response.json()
             }
         }).then (data => setMessages(data));
+    }
         return () => {
             setMessages([]);
           };
@@ -43,6 +47,7 @@ const Chat = ({socket}) => {
             console.log("hi")
             console.log(message)
             setMessages((prevMessages) => [...prevMessages, message]);});
+        
         }
           else{
             console.log("bad")
@@ -82,17 +87,31 @@ const Chat = ({socket}) => {
         setMessages((prevMessages) => [...prevMessages, createdMessage]);
         setNewMessage("")}
     }
+    useEffect(() => {
+        if (messageContainerRef.current) {
+          messageContainerRef.current.scrollTop =
+            messageContainerRef.current.scrollHeight;
+        }
+      }, [messages]);
     return (
         id ?
         <div className="chat-container">
             
                 {friend && 
                     <div className="chat-header" key={friend._id}>
-                        <img src={friend.image_url} alt={friend.name} className="profile-pic"/>
-                        <div className="name">{friend.name}</div>
+                        <div className="first-half">
+                            <img src={friend.image_url} alt={friend.name} className="profile-pic"/>
+                            <div className="name">{friend.name}</div>
+                        </div>  
+                        <div className="second-half-icons">
+                            <Icon path={mdiPhone} size={1.1} color={"rgb(57, 130, 247)"}/>
+                            <Icon path={mdiVideo} size={1.1} color={"rgb(57, 130, 247)"} />
+                            <Icon path={mdiDotsHorizontal} size={1.1}  color={"rgb(57, 130, 247)"}/>
+
+                        </div>
                     </div>
                 }
-            <div className="chat-body">
+            <div className="chat-body" ref={messageContainerRef}>
                 {messages && messages.length !== 0 && messages.map((item,index) => (
                     item.recipient === id ?
                     <div key={item._id ? item._id : index} className="sender-container">
@@ -110,11 +129,13 @@ const Chat = ({socket}) => {
             <div className="chat-footer">
                 <form onSubmit={(e) => handleMessageSend(e)}>
                     <input type="text" name="message" className="message" placeholder="Aa" value={newMessage} onChange={(e) => setNewMessage(e.target.value)}/>
-                    <input type="submit" className="submit-message" value={"submit"}/>
+                    <button type="submit" className="submit">
+                        <Icon path={mdiSend} size={1} color={"blue"}/>
+                    </button>
                 </form>
             </div>
         </div>:
-        <div className="">no ID</div>
+        <div className="chat-placeholder">Select a chat to display messages</div>
     )
 }
 

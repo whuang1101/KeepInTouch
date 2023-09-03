@@ -16,7 +16,7 @@ const Friends = () => {
     },[])
     return (
         <div className="all-friends">
-            <div className="friend-title">Friends</div>
+            <div className="friend-title">All Friends</div>
             {allFriends && allFriends.map((item) => (
                 <div className="friend-container" key={item._id}>
                     <div className="first-half">
@@ -24,7 +24,6 @@ const Friends = () => {
                         <img src={item.image_url} alt={item.name} className="profile-pic" />:
                         <img src={"https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?cs=srgb&dl=pexels-lukas-296282.jpg&fm=jpg"} alt={item.name} className="profile-pic" />
                         }
-                        
                         <div className="name">{item.name}</div>
                     </div>
                 </div>
