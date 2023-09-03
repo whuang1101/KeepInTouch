@@ -5,6 +5,9 @@ const Chat = ({socket}) => {
     const { id } = useParams();
     const [friend,setFriend] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
+    const data = JSON.parse(localStorage.getItem("userData"));
+
 
     useEffect(() => {
         if(id) {
@@ -28,17 +31,24 @@ const Chat = ({socket}) => {
           socket.on("private message", (message) => {
             console.log("hi")
             console.log(message)
-            setMessages((prevMessages) => [...prevMessages, "hi"]);
-        });
+            setMessages((prevMessages) => [...prevMessages, message]);});
         }
           else{
             console.log("bad")
           }
 
     },[socket])
-    const handleMessageSend = () => {
-        socket.emit("private message", { id: id, message: "hi" });
-        setMessages((prevMessages) => [...prevMessages, "hi"]);
+    const handleMessageSend = (e) => {
+        e.preventDefault();
+        const createdMessage = {
+            content: newMessage,
+            sender: data._id,
+            recipient: id,
+            date: new Date(),
+        }
+        socket.emit("private message", { id: id, message: createdMessage});
+        setMessages((prevMessages) => [...prevMessages, createdMessage]);
+        setNewMessage("")
     }
     return (
         id ?
@@ -51,14 +61,13 @@ const Chat = ({socket}) => {
                     </div>
                 }
             <div className="chat-body">
-                <button onClick={handleMessageSend}>hi</button>
                 {messages && messages.length !== 0 && messages.map(item => (
-                    <div className="hi" key={Math.random(1000)}>Hi</div>
+                    <div className="hi" key={Math.random(1000)}>{item.content}</div>
                 ))}
             </div>
             <div className="chat-footer">
-                <form>
-                    <input type="text" name="message" style={{borderRadius:"1em", padding:".3em", color:"black"}} className="message" placeholder="Aa"/>
+                <form onSubmit={(e) => handleMessageSend(e)}>
+                    <input type="text" name="message" className="message" placeholder="Aa" value={newMessage} onChange={(e) => setNewMessage(e.target.value)}/>
                     <input type="submit" className="submit-message" value={"submit"}/>
                 </form>
             </div>
