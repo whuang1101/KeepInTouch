@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom";
 import Icon from '@mdi/react';
-import { mdiDotsHorizontal, mdiPhone, mdiSend, mdiVideo } from '@mdi/js';
+import { mdiCircleSmall, mdiDotsHorizontal, mdiPhone, mdiSend, mdiVideo } from '@mdi/js';
 const Chat = ({socket}) => {
     const { id } = useParams();
     const messageContainerRef = useRef(null);
@@ -101,7 +101,12 @@ const Chat = ({socket}) => {
                     <div className="chat-header" key={friend._id}>
                         <div className="first-half">
                             <img src={friend.image_url} alt={friend.name} className="profile-pic"/>
-                            <div className="name">{friend.name}</div>
+                            
+                            {friend.online ? <><div className="name">{friend.name}</div> 
+                            <Icon path={mdiCircleSmall} size={1.5} color={"lightgreen"}/> </>:
+                            <div className="flex"><div className="name">{friend.name}</div> 
+                             <div>Last online: {friend.last_online.slice(0,10)}</div>
+                             </div>}
                         </div>  
                         <div className="second-half-icons">
                             <Icon path={mdiPhone} size={1.1} color={"rgb(57, 130, 247)"}/>

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 
-const Sidebar = ({setMiddleScreen, middleScreen}) => {
+const Sidebar = ({setMiddleScreen, middleScreen, setUser}) => {
     const data = JSON.parse(localStorage.getItem("userData"));
     const [chatHover,setChatHover] = useState(false);
     const [onlineHover, setOnlineHover] = useState(false);
@@ -14,6 +14,8 @@ const Sidebar = ({setMiddleScreen, middleScreen}) => {
     const [fake2, setFake2] = useState(false)
     const logout = () => {
         window.open("http://localhost:3000/auth/logout", "_self")
+        setUser(null)
+        localStorage.setItem("userData", null);
     }
     const chatEnter = () => {
         setChatHover(true);

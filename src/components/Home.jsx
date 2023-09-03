@@ -5,7 +5,7 @@ import Chat from "./Chat"
 import "../css/homepage.css"
 import { io } from "socket.io-client";
 
-const Home = () => {
+const Home = (setUser) => {
     const [middleScreen, setMiddleScreen] = useState("chat");
     const data = JSON.parse(localStorage.getItem("userData"));
     const [socket, setSocket] = useState(null)
@@ -23,7 +23,7 @@ const Home = () => {
 
     return(
         <div className="homepage">
-            <Sidebar setMiddleScreen={setMiddleScreen} middleScreen={middleScreen}/>
+            <Sidebar setMiddleScreen={setMiddleScreen} middleScreen={middleScreen} setUser={setUser}/>
             <ChatBar middleScreen ={middleScreen}/>
             <Chat socket={socket}/>
         </div>

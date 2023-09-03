@@ -2,10 +2,12 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import Login from "./Login";
 import Home from "./Home";
 import { useEffect, useState } from "react";
+import SignUp from "./SignUp";
 const Router = () => {
     const [user,setUser] = useState(null)
     const [loading, setLoading] = useState(true);
     useEffect(() => {
+        localStorage.setItem("userData", null);
         const getUser = async () => {
             try {
                 const response = await fetch("http://localhost:3000/auth/login/success", {
@@ -21,12 +23,10 @@ const Router = () => {
                     localStorage.setItem("userData", JSON.stringify(resObject.user));
                     setLoading(false)
                 } else {
-                    console.log("bye")
                     setLoading(false)
-                    throw new Error("authentication has failed!");
                 }
             } catch (err) {
-                console.log(err);
+                console.log()
             }
         }
         getUser();
@@ -41,7 +41,7 @@ const Router = () => {
           ) : user ? (
             <Navigate to="/" />
           ) : (
-            <Login/>
+            <Login setUser = {setUser} setLoading={setLoading}/>
           ),
     },
     {
@@ -49,9 +49,19 @@ const Router = () => {
         element: loading ? (
             <div>Loading...</div>
           ) : user ? (
-            <Home />
+            <Home setUser={setUser}/>
           ) : (
             <Navigate to="/login" />
+          ),
+      },
+      {
+        path: "/sign-up",
+        element: loading ? (
+            <div>Loading...</div>
+          ) : user ? (
+            <Navigate to="/" />
+          ) : (
+            <SignUp/>
           ),
       },
       {
@@ -59,7 +69,7 @@ const Router = () => {
         element: loading ? (
             <div>Loading...</div>
           ) : user ? (
-            <Home />
+            <Home setUser ={setUser}/>
           ) : (
             <Navigate to="/login" />
           ),

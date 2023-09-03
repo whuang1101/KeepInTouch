@@ -53,18 +53,27 @@ nav {
     gap: 1em;
 }
 .all-friends {
-    padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
 }
 .friend-title {
     flex: 1;
     font-size: 1.5em;
     font-weight: bolder;
 }
+.online-title {
+    padding: .5em;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
 .friend-container {
     flex: 8;
+}
+.online-friend-container, .no-one{
+    display: flex;
+    padding: .5em;
+    font-size: 1.2em;
+    justify-content: space-between;
 }
 .potential-friends, .friend-requests, .pending-requests{
     display: flex;
@@ -144,7 +153,6 @@ nav {
     gap: .5em;
     overflow: auto;
     scroll-behavior: smooth;
-
 }
 .chat-footer {
     flex: 1;

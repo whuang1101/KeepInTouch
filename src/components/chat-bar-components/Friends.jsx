@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-
+import Icon from '@mdi/react';
+import { mdiCircleSmall } from "@mdi/js";
 const Friends = () => {
     const data = JSON.parse(localStorage.getItem("userData"));
     const [allFriends, setAllFriends] = useState([])
@@ -16,9 +17,11 @@ const Friends = () => {
     },[])
     return (
         <div className="all-friends">
-            <div className="friend-title">All Friends</div>
-            {allFriends && allFriends.map((item) => (
-                <div className="friend-container" key={item._id}>
+            <div className="online-title">Online Friends</div>
+            {allFriends.some(user => user.online)  ?
+            allFriends && allFriends.map((item) => (
+                item.online &&
+                <div className="online-friend-container" key={item._id}>
                     <div className="first-half">
                         {item.image_url ?
                         <img src={item.image_url} alt={item.name} className="profile-pic" />:
@@ -26,8 +29,14 @@ const Friends = () => {
                         }
                         <div className="name">{item.name}</div>
                     </div>
+                    <Icon path={mdiCircleSmall} size={2} color={"lightgreen"} />
+
                 </div>
-            ))}
+            ))
+            : 
+            <div className="no-one">No one's online right now</div>
+            }
+
         </div>
     )
 }
