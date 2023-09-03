@@ -16,7 +16,9 @@
     flex: 1.5;
     border-right: 1px solid rgba(229,229,229);
 }
-.chat {
+.chat-container {
+    display: flex;
+    flex-direction: column;
     flex: 6;
 }
 .top-half {
@@ -40,9 +42,12 @@
     gap: 1em;
 }
 .friend-title {
+    flex: 1;
     font-size: 1.5em;
-    border-bottom: 1px solid black;
     font-weight: bolder;
+}
+.friend-container {
+    flex: 8;
 }
 .potential-friends, .friend-requests, .pending-requests{
     display: flex;
@@ -58,10 +63,10 @@
 .potential-friend, .friend-request, .pending-request,.friend-container {
     display: flex;
     padding: 1em;
-    border: 1px solid black;
     border-radius: 1em;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid black;
 }
 .first-half {
     display: flex;
@@ -81,7 +86,6 @@
 .chat {
     padding: 1em;
     font-weight: bolder;
-    border-bottom: 1px solid grey;
 }
 .chat-title {
     font-size: 1.5em;
@@ -89,13 +93,48 @@
 .friends-chat {
     display: flex;
     flex-direction: column;
-    padding-top: 1em;
 }
 .chat-friend-container {
     display: flex;
     align-items: center;
-    padding: 1em;
+    padding: .3em;
     gap: 1em;
     border: 1px solid grey;
     border-radius: 1em;
+}
+
+.chat-header {
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+    border-bottom: 1px solid rgb(234,234,234);
+    align-items: center;
+}
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-bottom: 1px solid black;
+}
+.chat-footer {
+    display: flex;
+    padding: .5em;
+}
+form {
+    display: flex;
+    width: 100%;
+}
+.message {
+    flex: 8;
+    border: none;
+    background-color: rgb(243,243,243);
+    border-radius: 1em;
+    padding: 1em;
+    font-size: 1.1rem;
+}
+.message::placeholder{
+    color: rgb(101,103,107);
+}
+.submit{
+    flex:1
 }

@@ -53,6 +53,16 @@ const Router = () => {
           ) : (
             <Navigate to="/login" />
           ),
+      },
+      {
+        path: "/:id",
+        element: loading ? (
+            <div>Loading...</div>
+          ) : user ? (
+            <Home />
+          ) : (
+            <Navigate to="/login" />
+          ),
       }
   ]);
 

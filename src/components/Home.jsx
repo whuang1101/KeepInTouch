@@ -11,7 +11,7 @@ const Home = () => {
     const [socket, setSocket] = useState(null)
     useEffect(() => {
         const newSocket = io('http://localhost:3000', {
-          query: { username: data.email },
+          query: { username: data._id },
         });
       
         setSocket(newSocket);
