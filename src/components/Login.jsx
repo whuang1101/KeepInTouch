@@ -10,6 +10,7 @@ const Login = ({setUser, setLoading}) => {
     username: "",
     password: "",
   });
+  const [loginFailed,setLoginFailed] = useState(false);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -44,6 +45,10 @@ const Login = ({setUser, setLoading}) => {
             if(data){
             localStorage.setItem("userData", JSON.stringify(data));
             setUser(data);
+            setLoginFailed(false)
+            }
+            else{
+              setLoginFailed(true)
             }
           })
           .catch((err) => {
@@ -70,6 +75,7 @@ const Login = ({setUser, setLoading}) => {
                         <motion.input whileFocus ={{scale:1.05}} transition={{ duration: 0.5 }} type="password" id="password" name="password" className="input-field" placeholder="Password" required={true} 
                         value={formData.password} onChange={handleInputChange}/>
                     </div>
+                    {loginFailed && <p style={{textAlign:"center", fontSize:".8em", color:"red"}}>Login failed either username or password is wrong</p>}
                     <div className="submit-container">
                         <motion.input whileHover={{scale: 1.1}} whileTap ={{scale:.8}}type="submit" className="submit" value={"Login"}/>
                     </div>
