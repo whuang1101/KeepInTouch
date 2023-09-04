@@ -7,35 +7,6 @@ const Router = () => {
   const initialUser = JSON.parse(localStorage.getItem("userData"));
   const [user, setUser] = useState(initialUser);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const getUser = async () => {
-            try {
-                const response = await fetch("https://red-silence-64.fly.dev/auth/login/success", {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                }
-                });
-                if (response.status === 200) {
-                    const resObject = await response.json();
-                    console.log(resObject.user);
-                    if(resObject.user){
-                    setUser(resObject.user);
-                    localStorage.setItem("userData", JSON.stringify(resObject.user));}
-                    setLoading(false)
-                } else {
-                  localStorage.setItem("userData", JSON.stringify(false));
-                    setLoading(false)
-                }
-            } catch (err) {
-                console.log()
-            }
-        }
-        getUser();
-
-        }, []);
-
     const router = createBrowserRouter([
     {
         path: "/login",
