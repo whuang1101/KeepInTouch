@@ -13,6 +13,9 @@ This is a messenger clone that allows real-time messaging.
 ## Default Screen 
 <img width="1509" alt="image" src="https://github.com/whuang1101/KeepInTouch/assets/91977590/4c20fb37-13af-42e2-8b8e-456e850d0359">
 
+## Live Messaging display
+https://github.com/whuang1101/KeepInTouch/assets/91977590/214fe611-f2f8-4927-8eeb-587a07ab5ce6
+
 ## Features
 - Local Authentication/ Make an account and sign in.
 - Password encrypted with bcryptjs.
