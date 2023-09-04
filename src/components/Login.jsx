@@ -82,7 +82,9 @@ const Login = ({setUser, setLoading}) => {
                 </form>
                 <div className="sign-up">
                     <p>Or sign up <Link to="/sign-up" style={{color:"white"}}>here</Link></p>
+                    <p>Want to try? try username: Joebob1 password:abcd1234</p>
                 </div>
+                
             </div>
         </>
     )
