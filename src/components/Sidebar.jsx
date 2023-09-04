@@ -18,8 +18,7 @@ const Sidebar = ({setMiddleScreen, middleScreen, setUser}) => {
         localStorage.setItem("userData", null);
         console.log("User logged out");
         // Check if these log messages appear in the console
-        window.open("https://red-silence-64.fly.dev/auth/logout", "_self");
-      }
+        }
     const chatEnter = () => {
         setChatHover(true);
     }
