@@ -5,7 +5,7 @@ import GitHubLogo from "../assets/GitHubLogo"
 import GoogleLogo from "../assets/GoogleLogo"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-const Login = ({setUser, setLoading}) => {
+const Login = ({setUser}) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -34,7 +34,6 @@ const Login = ({setUser, setLoading}) => {
         })
           .then((response) => {
             if (response.ok) {
-                setLoading(false);
               return response.json();
               // You can handle the successful login here, e.g., redirect the user
             } else {

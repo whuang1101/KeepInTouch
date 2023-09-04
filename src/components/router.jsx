@@ -6,13 +6,11 @@ import SignUp from "./SignUp";
 const Router = () => {
   const initialUser = JSON.parse(localStorage.getItem("userData"));
   const [user, setUser] = useState(initialUser);
-    const [loading, setLoading] = useState(true);
+
     const router = createBrowserRouter([
     {
         path: "/login",
-        element: loading ? (
-            <div>Loading...</div>
-          ) : user ? (
+        element: user ? (
             <Navigate to="/" />
           ) : (
             <Login setUser = {setUser} setLoading={setLoading}/>
@@ -20,9 +18,7 @@ const Router = () => {
     },
     {
         path: "/",
-        element: loading ? (
-            <div>Loading...</div>
-          ) : user ? (
+        element:  user ? (
             <Home setUser={setUser}/>
           ) : (
             <Navigate to="/login" />
@@ -30,9 +26,7 @@ const Router = () => {
       },
       {
         path: "/sign-up",
-        element: loading ? (
-            <div>Loading...</div>
-          ) : user ? (
+        element: user ? (
             <Navigate to="/" />
           ) : (
             <SignUp/>
@@ -40,9 +34,7 @@ const Router = () => {
       },
       {
         path: "/:id",
-        element: loading ? (
-            <div>Loading...</div>
-          ) : user ? (
+        element: user ? (
             <Home setUser ={setUser}/>
           ) : (
             <Navigate to="/login" />
