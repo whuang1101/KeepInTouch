@@ -50,7 +50,7 @@
     padding-top: 0;
     align-items: center;
 }
-.username-container, .password-container {
+.username-container, .password-container, .name-container, .confirm-password-container, .email-container {
     display: flex;
     flex-direction: column;
     gap: .2em;

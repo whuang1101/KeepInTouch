@@ -8,7 +8,7 @@ const Router = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await fetch("https://red-silence-64.fly.dev/auth/login/success", {
+                const response = await fetch("http://localhost:3000/auth/login/success", {
                 method: "GET",
                 credentials: "include",
                 headers: {
@@ -27,7 +27,6 @@ const Router = () => {
                 }
             } catch (err) {
                 console.log(err);
-                console.log()
             }
         }
         getUser();
