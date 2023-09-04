@@ -8,7 +8,7 @@ const FriendRequest = () => {
     const [friendRequests, setFriendRequest] = useState(null) 
     const [pendingRequests, setPendingRequest] = useState(null)
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${data._id}`).then(response => {
+        fetch(`https://red-silence-64.fly.dev/users/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();
             }
@@ -16,7 +16,7 @@ const FriendRequest = () => {
                 throw new Error("Network response was not ok")
             }
         }).then(data => {setAllUsers(data)})
-        fetch(`http://localhost:3000/friend-request/${data._id}`).then(response => {
+        fetch(`https://red-silence-64.fly.dev/friend-request/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();
             }
@@ -24,7 +24,7 @@ const FriendRequest = () => {
                 throw new Error("Network response was not ok")
             }
         }).then(data => {setFriendRequest(data)})
-        fetch(`http://localhost:3000/friend-request/pending/${data._id}`).then(response => {
+        fetch(`https://red-silence-64.fly.dev/friend-request/pending/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();
             }
@@ -41,7 +41,7 @@ const FriendRequest = () => {
             sender: data.email,
         }
 
-        fetch("http://localhost:3000/friend-request", {
+        fetch("https://red-silence-64.fly.dev/friend-request", {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const FriendRequest = () => {
             recipient: data,
             sender: sender,
         }
-            fetch("http://localhost:3000/friend-request/accept", {
+            fetch("https://red-silence-64.fly.dev/friend-request/accept", {
             method:"POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -93,7 +93,7 @@ const FriendRequest = () => {
             recipient: data,
             sender: sender,
         }
-            fetch("http://localhost:3000/friend-request/decline", {
+            fetch("https://red-silence-64.fly.dev/friend-request/decline", {
             method:"POST",
             headers: {
                 "Content-Type" : "application/json",

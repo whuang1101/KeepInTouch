@@ -4,13 +4,13 @@ import Home from "./Home";
 import { useEffect, useState } from "react";
 import SignUp from "./SignUp";
 const Router = () => {
-    const [user,setUser] = useState(null)
+  const initialUser = JSON.parse(localStorage.getItem("userData"));
+  const [user, setUser] = useState(initialUser);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        localStorage.setItem("userData", null);
         const getUser = async () => {
             try {
-                const response = await fetch("http://localhost:3000/auth/login/success", {
+                const response = await fetch("https://red-silence-64.fly.dev/auth/login/success", {
                 method: "GET",
                 credentials: "include",
                 headers: {
@@ -19,10 +19,13 @@ const Router = () => {
                 });
                 if (response.status === 200) {
                     const resObject = await response.json();
+                    console.log(resObject.user);
+                    if(resObject.user){
                     setUser(resObject.user);
-                    localStorage.setItem("userData", JSON.stringify(resObject.user));
+                    localStorage.setItem("userData", JSON.stringify(resObject.user));}
                     setLoading(false)
                 } else {
+                  localStorage.setItem("userData", JSON.stringify(false));
                     setLoading(false)
                 }
             } catch (err) {

@@ -5,7 +5,7 @@ const Friends = () => {
     const data = JSON.parse(localStorage.getItem("userData"));
     const [allFriends, setAllFriends] = useState([])
     useEffect(() =>{
-        fetch(`http://localhost:3000/users/friends/${data._id}`)
+        fetch(`https://red-silence-64.fly.dev/users/friends/${data._id}`)
         .then(response => {
             if(response.ok){
                 return response.json()
@@ -18,7 +18,7 @@ const Friends = () => {
     return (
         <div className="all-friends">
             <div className="online-title">Online Friends</div>
-            {allFriends.some(user => user.online)  ?
+            { allFriends && allFriends.length !== 0 && allFriends.some(user => user.online)  ?
             allFriends && allFriends.map((item) => (
                 item.online &&
                 <div className="online-friend-container" key={item._id}>

@@ -12,7 +12,7 @@ const Chat = ({socket}) => {
 
     useEffect (() => {
         if(id) {
-        fetch(`http://localhost:3000/messages/${id}/${data._id}`)
+        fetch(`https://red-silence-64.fly.dev/messages/${id}/${data._id}`)
         .then(response => {
             if(response.ok) {
                 return response.json()
@@ -25,7 +25,7 @@ const Chat = ({socket}) => {
     },[id,data._id])
     useEffect(() => {
         if(id) {
-            fetch(`http://localhost:3000/users/friend/${id}`)
+            fetch(`https://red-silence-64.fly.dev/users/friend/${id}`)
             .then((response) => 
                 {if(response.ok){
                     return response.json()
@@ -67,7 +67,7 @@ const Chat = ({socket}) => {
             date: new Date(),
             read: false
         }
-        fetch("http://localhost:3000/messages", {
+        fetch("https://red-silence-64.fly.dev/messages", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

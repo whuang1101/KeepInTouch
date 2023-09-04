@@ -4,15 +4,27 @@ import { motion } from "framer-motion"
 import GitHubLogo from "../assets/GitHubLogo"
 import GoogleLogo from "../assets/GoogleLogo"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 const Login = ({setUser, setLoading}) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
     const handleFormSubmit = (e) => {
         e.preventDefault();
         
         // Replace these with the actual username and password values
-        const username = "whuang1101";
-        const password = "Orange12345";
+        const { username, password } = formData;
+
       
-        fetch("http://localhost:3000/login", {
+        fetch("https://red-silence-64.fly.dev/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -29,8 +41,10 @@ const Login = ({setUser, setLoading}) => {
               // You can handle the failed login here, e.g., display an error message
             }
           }).then(data => {
+            if(data){
             localStorage.setItem("userData", JSON.stringify(data));
             setUser(data);
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -48,22 +62,19 @@ const Login = ({setUser, setLoading}) => {
                 <form className="login-form" onSubmit= {handleFormSubmit}>
                     <div className="username-container">
                         <label htmlFor="username">Username:</label>
-                        <motion.input whileFocus ={{scale:1.05}} transition={{ duration: 0.5 }} type="text" id="username" name="username" className="input-field" placeholder="Username" required={true} />
+                        <motion.input whileFocus ={{scale:1.05}} transition={{ duration: 0.5 }} type="text" id="username" name="username" className="input-field" placeholder="Username" required={true} 
+                        value={formData.username} onChange={handleInputChange}/>
                     </div>
                     <div className="password-container">
                         <label htmlFor="password">Password:</label>
-                        <motion.input whileFocus ={{scale:1.05}} transition={{ duration: 0.5 }} type="password" id="password" name="password" className="input-field" placeholder="Password" required={true} />
+                        <motion.input whileFocus ={{scale:1.05}} transition={{ duration: 0.5 }} type="password" id="password" name="password" className="input-field" placeholder="Password" required={true} 
+                        value={formData.password} onChange={handleInputChange}/>
                     </div>
                     <div className="submit-container">
                         <motion.input whileHover={{scale: 1.1}} whileTap ={{scale:.8}}type="submit" className="submit" value={"Login"}/>
                     </div>
                 </form>
                 <div className="sign-up">
-                    <p>Or Login using </p>
-                    <div className="logos">
-                        <GitHubLogo />
-                        <GoogleLogo/>
-                    </div>
                     <p>Or sign up <Link to="/sign-up" style={{color:"white"}}>here</Link></p>
                 </div>
             </div>

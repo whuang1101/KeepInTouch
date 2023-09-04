@@ -13,10 +13,13 @@ const Sidebar = ({setMiddleScreen, middleScreen, setUser}) => {
     const [fakeHover, setFakeHover] = useState(false);
     const [fake2, setFake2] = useState(false)
     const logout = () => {
-        window.open("http://localhost:3000/auth/logout", "_self")
-        setUser(null)
+        console.log("Logging out...");
+        setUser(null);
         localStorage.setItem("userData", null);
-    }
+        console.log("User logged out");
+        // Check if these log messages appear in the console
+        window.open("https://red-silence-64.fly.dev/auth/logout", "_self");
+      }
     const chatEnter = () => {
         setChatHover(true);
     }

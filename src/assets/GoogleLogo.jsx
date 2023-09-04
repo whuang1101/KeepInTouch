@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 const GoogleLogo = () => {
     const google = () => {
-        window.open("http://localhost:3000/auth/google", "_self");
+        window.open("https://red-silence-64.fly.dev/auth/google", "_self");
     }
     return(
   <motion.svg whileHover={{scale:1.2}}xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="2em" height="2em" onClick={google}>

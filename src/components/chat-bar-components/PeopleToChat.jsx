@@ -7,7 +7,7 @@ const PeopleToChat = () => {
     const data = JSON.parse(localStorage.getItem("userData"));
  
     useEffect(() =>{
-        fetch(`http://localhost:3000/users/friends/${data._id}`)
+        fetch(`https://red-silence-64.fly.dev/users/friends/${data._id}`)
         .then(response => {
             if(response.ok){
                 return response.json()

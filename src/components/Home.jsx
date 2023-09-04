@@ -5,12 +5,12 @@ import Chat from "./Chat"
 import "../css/homepage.css"
 import { io } from "socket.io-client";
 
-const Home = (setUser) => {
+const Home = ({setUser}) => {
     const [middleScreen, setMiddleScreen] = useState("chat");
     const data = JSON.parse(localStorage.getItem("userData"));
     const [socket, setSocket] = useState(null)
     useEffect(() => {
-        const newSocket = io('http://localhost:3000', {
+        const newSocket = io('https://red-silence-64.fly.dev/', {
           query: { username: data._id },
         });
       
