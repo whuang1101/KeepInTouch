@@ -6,11 +6,40 @@ import SignUp from "./SignUp";
 const Router = () => {
   const initialUser = JSON.parse(localStorage.getItem("userData"));
   const [user, setUser] = useState(initialUser);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                const response = await fetch("https://red-silence-64.fly.dev/auth/login/success", {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+                });
+                if (response.status === 200) {
+                    const resObject = await response.json();
+                    console.log(resObject.user);
+                    if(resObject.user){
+                      setUser(resObject.user);}
+                      setLoading(false)
+                } else {
+                    setLoading(false)
+                }
+            } catch (err) {
+                console.log()
+            }
+        }
+        getUser();
+
+        }, []);
 
     const router = createBrowserRouter([
     {
         path: "/login",
-        element: user ? (
+        element: loading ? (
+            <div>Loading...</div>
+          ) : user ? (
             <Navigate to="/" />
           ) : (
             <Login setUser = {setUser} setLoading={setLoading}/>
@@ -18,7 +47,9 @@ const Router = () => {
     },
     {
         path: "/",
-        element:  user ? (
+        element: loading ? (
+            <div>Loading...</div>
+          ) : user ? (
             <Home setUser={setUser}/>
           ) : (
             <Navigate to="/login" />
@@ -26,7 +57,9 @@ const Router = () => {
       },
       {
         path: "/sign-up",
-        element: user ? (
+        element: loading ? (
+            <div>Loading...</div>
+          ) : user ? (
             <Navigate to="/" />
           ) : (
             <SignUp/>
@@ -34,7 +67,9 @@ const Router = () => {
       },
       {
         path: "/:id",
-        element: user ? (
+        element: loading ? (
+            <div>Loading...</div>
+          ) : user ? (
             <Home setUser ={setUser}/>
           ) : (
             <Navigate to="/login" />
