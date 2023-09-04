@@ -1,7 +1,7 @@
 # KeepInTouch 
-This is a messenger clone that allows real-time messaging. 
-[LiveDemo](https://mellow-sfogliatella-52d786.netlify.app/)
-[Backend server code of KeepInTouch](https://github.com/whuang1101/KeepInTouch-server)
+- This is a messenger clone that allows real-time messaging. 
+- [LiveDemo](https://mellow-sfogliatella-52d786.netlify.app/)
+- [Backend server code of KeepInTouch](https://github.com/whuang1101/KeepInTouch-server)
 
 ## Login Screen 
 <img width="1509" alt="image" src="https://github.com/whuang1101/KeepInTouch/assets/91977590/eba9c763-4b5e-4cdd-bb18-7038c19601c7">
