@@ -4,7 +4,7 @@ const Friends = () => {
     const data = JSON.parse(localStorage.getItem("userData"));
     const [allFriends, setAllFriends] = useState([])
     useEffect(() =>{
-        fetch(`http://localhost:3000/users/friends/${data._id}`)
+        fetch(`https://keepintouch-server-production.up.railway.app/users/friends/${data._id}`)
         .then(response => {
             if(response.ok){
                 return response.json()

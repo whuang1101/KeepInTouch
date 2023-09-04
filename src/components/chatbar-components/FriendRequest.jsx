@@ -4,18 +4,19 @@ import { mdiAccountPlus, mdiCheck, mdiClose, mdiDotsHorizontalCircleOutline} fro
 
 const FriendRequest = () => {
     const [allUsers, setAllUsers] = useState(null)
+    const [allFriends, setAllFriends] = useState(null);
     const data = JSON.parse(localStorage.getItem("userData"));
     const [friendRequests, setFriendRequest] = useState(null) 
     const [pendingRequests, setPendingRequest] = useState(null)
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${data._id}`).then(response => {
+        fetch(`https://keepintouch-server-production.up.railway.app/users/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();
             }
             else{
                 throw new Error("Network response was not ok")
             }
-        }).then(data => {setAllUsers(data), console.log(data)})
+        }).then(data => {setAllUsers(data)})
         fetch(`http://localhost:3000/friend-request/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();
@@ -24,7 +25,7 @@ const FriendRequest = () => {
                 throw new Error("Network response was not ok")
             }
         }).then(data => {setFriendRequest(data)})
-        fetch(`http://localhost:3000/friend-request/pending/${data._id}`).then(response => {
+        fetch(`https://keepintouch-server-production.up.railway.app/friend-request/pending/${data._id}`).then(response => {
             if(response.ok){
                 return response.json();
             }
@@ -32,7 +33,15 @@ const FriendRequest = () => {
                 throw new Error("Network response was not ok")
             }
         }).then(data => {setPendingRequest(data)} )
-    
+            fetch(`https://keepintouch-server-production.up.railway.app/users/friends/${data._id}`)
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                }
+            }).then(data => setAllFriends(data))
+            .catch((err) =>{
+                console.log(err);
+            })
     }
         ,[]);
     const handleSendRequest = (newRecipient) => {
@@ -41,7 +50,7 @@ const FriendRequest = () => {
             sender: data.email,
         }
 
-        fetch("http://localhost:3000/friend-request", {
+        fetch("https://keepintouch-server-production.up.railway.app/friend-request", {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -69,7 +78,7 @@ const FriendRequest = () => {
             recipient: data,
             sender: sender,
         }
-            fetch("http://localhost:3000/friend-request/accept", {
+            fetch("https://keepintouch-server-production.up.railway.app/friend-request/accept", {
             method:"POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -93,7 +102,7 @@ const FriendRequest = () => {
             recipient: data,
             sender: sender,
         }
-            fetch("http://localhost:3000/friend-request/decline", {
+            fetch("https://keepintouch-server-production.up.railway.app/friend-request/decline", {
             method:"POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -131,6 +140,18 @@ const FriendRequest = () => {
             ))}
         </div>
         }
+        {allFriends && allFriends.length !==0 &&
+        <div className="all-friends">
+            <div className="friend-request-title">All Friends</div>
+            {allFriends.map((item) => (
+                <div className="friend-request" key={item._id}>
+                    <div className="first-half">
+                        <img src={item.image_url} alt={`${item.name} profile-pic`}  className="profile-pic"/>
+                        <div className="friend-request-name"> {item.name}</div>
+                    </div>
+                </div>
+            ))}
+        </div>}
         {pendingRequests && pendingRequests.some(item => item.status === 2) &&
         <div className="pending-requests">
             <div className="pending-request-title">Pending Request</div>
