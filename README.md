@@ -38,4 +38,4 @@ https://github.com/whuang1101/KeepInTouch/assets/91977590/214fe611-f2f8-4927-8ee
 
 ## Works
 - [Previous Project - Photo-tagging app](https://github.com/whuang1101/photo-tagging)
-- Next Project in the works
+- [Next Project - Odin-book](https://github.com/whuang1101/OdinBook/)
